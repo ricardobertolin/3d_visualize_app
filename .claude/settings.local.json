@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "Bash(curl -s \"https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.4.7/build/gaussian-splats-3d.module.js\")",
+      "Bash(curl -s \"https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.4.7/build/gaussian-splats-3d.module.js\" -o /tmp/gs3d.js)",
+      "Read(//tmp/**)",
+      "Bash(curl -s \"https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.4.7/build/gaussian-splats-3d.module.js\" -o \"C:\\\\Users\\\\ricar\\\\AppData\\\\Local\\\\Temp\\\\gs3d.js\")",
+      "Read(//c/Users/ricar/AppData/Local/Temp/**)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:antimatter15.com)"
+    ]
+  }
+}

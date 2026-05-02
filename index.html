@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#2fa37a">
+  <meta name="description" content="View 3D Gaussian Splat .ply files in your browser. Drop a file in, orbit/pan/zoom the camera.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Splat Viewer">
+
+  <title>Splat Viewer · 3D Gaussian Visualizer</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+
+  <!-- Three.js and the Gaussian-Splats-3D viewer are loaded as ES modules
+       from the jsdelivr CDN. The import map below makes the bare
+       specifiers (`three`, `@mkkellogg/...`) resolvable at runtime. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three":    "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+        "@mkkellogg/gaussian-splats-3d": "https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.4.7/build/gaussian-splats-3d.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ── First-run / drop overlay ─────────────────────────────── -->
+  <div id="dropZone" class="drop-zone">
+    <div class="drop-zone__inner">
+      <div class="drop-zone__logo" aria-hidden="true">
+        <!-- Isometric cube — matches the app icon -->
+        <svg viewBox="0 0 192 192" width="96" height="96">
+          <g transform="translate(96 96)">
+            <polygon points="0,-58 64,-22 0,14 -64,-22" fill="#66d6a8"/>
+            <polygon points="-64,-22 0,14 0,82 -64,46"  fill="#2fa37a"/>
+            <polygon points="64,-22 0,14 0,82 64,46"    fill="#207a59"/>
+          </g>
+        </svg>
+      </div>
+      <h1 class="drop-zone__title">3D Splat Viewer</h1>
+      <p class="drop-zone__hint">
+        Drop a Gaussian Splat <code>.ply</code> file here<br>
+        <span class="drop-zone__hint-sub">(or <code>.splat</code> / <code>.ksplat</code> / <code>.obj</code>)</span>
+      </p>
+
+      <label class="btn-primary" for="fileInput">
+        Choose file
+        <input id="fileInput" type="file" accept=".ply,.splat,.ksplat,.obj" hidden>
+      </label>
+
+      <p class="drop-zone__small">
+        Files stay on your device — nothing is uploaded.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Loading overlay ──────────────────────────────────────── -->
+  <div id="loading" class="loading" hidden>
+    <div class="loading__spinner" aria-hidden="true"></div>
+    <p class="loading__text" id="loadingText">Loading…</p>
+  </div>
+
+  <!-- ── Top bar (visible after a scene is loaded) ────────────── -->
+  <header id="topbar" class="topbar" hidden>
+    <span class="topbar__name" id="sceneName" title=""></span>
+    <div class="topbar__actions">
+      <button id="pointBtn"   class="topbar__btn" title="Toggle point-cloud mode (debug)" aria-label="Toggle point-cloud mode">P</button>
+      <button id="gridBtn"    class="topbar__btn" title="Toggle grid / axes"               aria-label="Toggle grid">#</button>
+      <button id="flipBtn"    class="topbar__btn" title="Flip up axis"                     aria-label="Flip up axis">⇅</button>
+      <button id="resetBtn"   class="topbar__btn" title="Reset camera"                     aria-label="Reset camera">⟲</button>
+      <button id="loadNewBtn" class="topbar__btn" title="Load another file"                aria-label="Load another file">📂</button>
+    </div>
+  </header>
+
+  <!-- ── Controls help (collapsible) ──────────────────────────── -->
+  <aside id="controls" class="controls" hidden>
+    <button id="controlsToggle" class="controls__toggle"
+            aria-label="Toggle camera controls help" aria-expanded="false">?</button>
+    <div class="controls__panel" id="controlsPanel" hidden>
+      <h2 class="controls__title">Camera</h2>
+      <ul class="controls__list">
+        <li><b>Drag</b> &nbsp;orbit</li>
+        <li><b>Right-drag / Shift-drag</b> &nbsp;pan</li>
+        <li><b>Scroll</b> &nbsp;zoom</li>
+        <li><b>W A S D</b> &nbsp;move</li>
+        <li><b>Q / E</b> &nbsp;down / up</li>
+        <li><b>1 finger</b> &nbsp;orbit</li>
+        <li><b>2 fingers</b> &nbsp;pan / pinch</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ── Footer (only on the drop screen) ─────────────────────── -->
+  <footer class="footer" id="footer">
+    <p>v1.0.0 &nbsp;·&nbsp; Three.js &nbsp;·&nbsp; gaussian-splats-3d</p>
+    <p>Made by <span class="footer__author">ricardobertolin</span></p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

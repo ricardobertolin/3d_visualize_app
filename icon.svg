@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <!-- App icon: deep-forest rounded square with an isometric cube in viridian shades -->
+  <rect width="192" height="192" rx="32" fill="#07140f"/>
+  <g transform="translate(96 96)">
+    <polygon points="0,-58 64,-22 0,14 -64,-22" fill="#66d6a8"/>
+    <polygon points="-64,-22 0,14 0,82 -64,46"  fill="#2fa37a"/>
+    <polygon points="64,-22 0,14 0,82 64,46"    fill="#207a59"/>
+  </g>
+</svg>

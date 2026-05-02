@@ -1,0 +1,19 @@
+{
+  "name": "3D Splat Viewer",
+  "short_name": "Splat Viewer",
+  "description": "View 3D Gaussian Splat .ply files in your browser. Drop a file in and move/rotate the camera.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07140f",
+  "theme_color": "#2fa37a",
+  "orientation": "any",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
